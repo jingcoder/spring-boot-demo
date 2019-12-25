@@ -1,0 +1,44 @@
+<config
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns='http://www.ehcache.org/v3'
+    xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core.xsd">
+
+    <!-- 持久化路径 -->
+    <persistence directory="D:/ehcacheData"/>
+
+    <cache alias="foo">
+    <key-type>java.lang.String</key-type>
+    <value-type>java.lang.String</value-type>
+    <resources>
+      <heap unit="entries">2000</heap>
+      <offheap unit="MB">500</offheap>
+    </resources>
+  </cache>
+
+  <cache-template name="myDefaults">
+    <key-type>java.lang.String</key-type>
+    <value-type>java.lang.Object</value-type>
+    <heap unit="entries">200</heap>
+  </cache-template>
+
+    <!--  Cache Region配置，感觉只能用于简单配置，官方给出的例子也不怎么全，所以考虑直接写代码配置，可能更加方便 -->
+  <cache  alias="common" uses-template="myDefaults">
+      <expiry>
+          <ttl unit="minutes">5</ttl>
+      </expiry>
+      <resources>
+        <heap unit="MB">500</heap>
+        <heap unit="entries">200</heap>
+        <offheap unit="MB">100</offheap>
+       <disk unit="MB" persistent="false">500</disk>
+     </resources>
+
+      <heap-store-settings></heap-store-settings>
+      <disk-store-settings></disk-store-settings>
+  </cache>
+
+  <cache alias="simpleCache" uses-template="myDefaults" />
+
+
+
+</config>
