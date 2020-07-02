@@ -56,7 +56,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-            <version>5.1.42</version>
+            <version>8.0.16</version>
         </dependency>
 
         <!-- spring-test 已经包含junit ，但只能在test包下用，不能Java包下用 -->
